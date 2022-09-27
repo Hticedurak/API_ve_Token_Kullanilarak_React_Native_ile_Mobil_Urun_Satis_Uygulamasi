@@ -1,20 +1,122 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useMemo, useReducer } from "react";
+import Products from "./screens/Products";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from '@react-navigation/native'
+import Profile from "./screens/Profile";
+import { Ionicons } from '@expo/vector-icons'
+import { colors } from "./config/constants";
+import Login from "./screens/Login";
+import ProductsDetails from "./screens/ProductsDetails";
+import Edit from "./screens/Edit";
+import ProfileDetails from "./screens/ProfileDetails";
+import AddProduct from "./screens/AddProduct";
+import { AuthContext } from "./context/AuthContext";
 
-export default function App() {
+
+const ProductsStack = createNativeStackNavigator()
+
+const ProductsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <ProductsStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.beyaz, headerTitleStyle: { fontWeight: '500', color: colors.beyaz } }}>
+      <ProductsStack.Screen name="Products" component={Products} options={{ title: "List" }} />
+      <ProductsStack.Screen name="Details" component={ProductsDetails} options={{ title: "Details" }} />
+      <ProductsStack.Screen name="Edit" component={Edit} options={{ title: "Edit" }} />
+      <ProductsStack.Screen name="AddProduct" component={AddProduct} options={{ title: "New Product" }} />
+    </ProductsStack.Navigator>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const ProfileStack = createNativeStackNavigator()
+
+const ProfileScreen = () => {
+  return (
+    <ProfileStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.beyaz, headerTitleStyle: { fontWeight: '500', color: colors.beyaz } }}>
+      <ProfileStack.Screen name="Profil" component={Profile} options={{ title: "Profile" }} />
+      <ProfileStack.Screen name="ProfileDetails" component={ProfileDetails} options={{ title: "Profile Details" }} />
+
+    </ProfileStack.Navigator>
+  )
+}
+
+const LoginStack = createNativeStackNavigator()
+
+const AuthScreen = () => {
+  return (
+    <LoginStack.Navigator screenOptions={{ headerShown: false, }}>
+      <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
+  )
+}
+
+const Tabs = createBottomTabNavigator()
+const HomeScreen = () => {
+  return (
+    <Tabs.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'List') {
+            iconName = focused
+              ? 'list'
+              : 'list-outline';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'person' : 'person-outline';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarStyle: { backgroundColor: colors.primary },
+        tabBarActiveTintColor: colors.beyaz,
+        tabBarShowLabel: false,
+        tabBarInactiveTintColor: colors.secondary,
+      })}
+    >
+      <Tabs.Screen name="List" component={ProductsScreen}></Tabs.Screen>
+      <Tabs.Screen name="Profile" component={ProfileScreen}></Tabs.Screen>
+    </Tabs.Navigator>
+  )
+}
+
+const App = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [userToken, setUserToken] = useState(null);
+
+  const authContext = useMemo(() => ({
+
+    signIn: (username, password) => {
+      fetch('https://dummyjson.com/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: 'atuny0',
+          password: '9uQFF1Lh'
+        })
+      })
+        .then(res => res.json())
+        .then(res => {
+          setUserToken(userToken);
+          setIsLoading(false);
+          console.log(res);
+        })
+        .catch(e => {
+          alert(e.message);
+        })
+    },
+    signOut: () => {
+      setUserToken(null);
+      setIsLoading(false);
+    },
+  }), []);
+
+  return (
+    <AuthContext.Provider value={authContext}>
+      <NavigationContainer >
+        {userToken !== null ? <HomeScreen /> : <AuthScreen />}
+      </NavigationContainer>
+    </AuthContext.Provider>
+  )
+}
+export default App;
