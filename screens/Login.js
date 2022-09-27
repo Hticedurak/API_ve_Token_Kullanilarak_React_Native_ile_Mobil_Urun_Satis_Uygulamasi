@@ -23,7 +23,6 @@ const Login = () => {
                     onChangeText={setUsername}
                     secure={false}>
                 </LoginRow>
-
                 <LoginRow
                     input={"Password"}
                     value={password}
@@ -31,7 +30,6 @@ const Login = () => {
                     secure={true}
                 >
                 </LoginRow>
-
                 <View style={styles.box}>
                     <TouchableOpacity style={styles.icon}>
                         <Ionicons name="checkmark" size={18} color={'white'}></Ionicons>

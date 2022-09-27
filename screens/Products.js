@@ -21,7 +21,7 @@ const Products = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <TextInput style={styles.search} placeholder='Search' placeholderTextColor={colors.beyaz} paddingHorizontal={15}></TextInput>
+                    <TextInput style={styles.search} placeholder='Search' placeholderTextColor={colors.white} paddingHorizontal={15}></TextInput>
                 </View>
                 <TouchableOpacity style={styles.addIcon} onPress={() => {
                     navigation.navigate('AddProduct');

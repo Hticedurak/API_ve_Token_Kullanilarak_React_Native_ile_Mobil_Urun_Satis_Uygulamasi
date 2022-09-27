@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useReducer } from "react";
+import React, { useState, useMemo } from "react";
 import Products from "./screens/Products";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -12,10 +12,10 @@ import Edit from "./screens/Edit";
 import ProfileDetails from "./screens/ProfileDetails";
 import AddProduct from "./screens/AddProduct";
 import { AuthContext } from "./context/AuthContext";
+import { ActivityIndicator, View } from "react-native";
 
 
 const ProductsStack = createNativeStackNavigator()
-
 const ProductsScreen = () => {
   return (
     <ProductsStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.white, headerTitleStyle: { fontWeight: '500', color: colors.white } }}>
@@ -28,7 +28,6 @@ const ProductsScreen = () => {
 }
 
 const ProfileStack = createNativeStackNavigator()
-
 const ProfileScreen = () => {
   return (
     <ProfileStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.white, headerTitleStyle: { fontWeight: '500', color: colors.white } }}>
@@ -36,16 +35,6 @@ const ProfileScreen = () => {
       <ProfileStack.Screen name="ProfileDetails" component={ProfileDetails} options={{ title: "Profile Details" }} />
 
     </ProfileStack.Navigator>
-  )
-}
-
-const LoginStack = createNativeStackNavigator()
-
-const AuthScreen = () => {
-  return (
-    <LoginStack.Navigator screenOptions={{ headerShown: false, }}>
-      <LoginStack.Screen name="Login" component={Login} />
-    </LoginStack.Navigator>
   )
 }
 
@@ -76,6 +65,15 @@ const HomeScreen = () => {
       <Tabs.Screen name="List" component={ProductsScreen}></Tabs.Screen>
       <Tabs.Screen name="Profile" component={ProfileScreen}></Tabs.Screen>
     </Tabs.Navigator>
+  )
+}
+
+const LoginStack = createNativeStackNavigator()
+const AuthScreen = () => {
+  return (
+    <LoginStack.Navigator screenOptions={{ headerShown: false }}>
+      <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
   )
 }
 
@@ -111,10 +109,18 @@ const App = () => {
     },
   }), []);
 
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    )
+  }
+
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer >
-        {userToken !== null ? <HomeScreen /> : <AuthScreen />}
+        {userToken !== null ? (<HomeScreen/>) : <AuthScreen/>}
       </NavigationContainer>
     </AuthContext.Provider>
   )

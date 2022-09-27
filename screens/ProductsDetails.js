@@ -22,7 +22,7 @@ const ProductsDetails = ({ navigation, route }) => {
                         <ProductsDetailsRow propertiesName={'Category'} property={route.params.category}></ProductsDetailsRow>
                         <ProductsDetailsRow propertiesName={'Stock'} property={route.params.stock}></ProductsDetailsRow>
                         <ProductsDetailsRow propertiesName={'Discount'} property={route.params.discountPercentage}></ProductsDetailsRow>
-                        <ProductsDetailsRow propertiesName={'Description'} property={route.params.description}></ProductsDetailsRow>
+                        <ProductsDetailsRow propertiesName={'Description'} property={route.params.description} ></ProductsDetailsRow>
 
                         <View style={styles.buttonContainer}>
                             <ButtonsRow buttonName={'Delete'} onPress={twoButtonAlert}></ButtonsRow>
