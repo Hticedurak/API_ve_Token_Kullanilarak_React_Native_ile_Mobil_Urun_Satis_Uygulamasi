@@ -95,7 +95,7 @@ const App = () => {
       })
         .then(res => res.json())
         .then(res => {
-          setUserToken(userToken);
+          setUserToken(res);
           setIsLoading(false);
           console.log(res);
         })
