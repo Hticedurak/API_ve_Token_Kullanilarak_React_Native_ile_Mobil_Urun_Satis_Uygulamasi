@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         margin: 20,
         fontWeight: 'bold',
-        color: colors.beyaz,
+        color: colors.white,
         fontStyle: 'italic'
     },
 })

@@ -26,7 +26,7 @@ const Products = ({ navigation }) => {
                 <TouchableOpacity style={styles.addIcon} onPress={() => {
                     navigation.navigate('AddProduct');
                 }}>
-                    <Ionicons name='add' size={24} color={colors.beyaz}  ></Ionicons>
+                    <Ionicons name='add' size={24} color={colors.white}  ></Ionicons>
                 </TouchableOpacity>
             </View>
             <View >
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         borderColor: colors.secondary,
     },
     search: {
-        color: colors.beyaz,
+        color: colors.white,
         marginVertical: 4
     },
     addIcon: {

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 40,
         borderWidth: 2,
-        borderColor: colors.siyah
+        borderColor: colors.black
     },
     people: {
         paddingHorizontal: 16,

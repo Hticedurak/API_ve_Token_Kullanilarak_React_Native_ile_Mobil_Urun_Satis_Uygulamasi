@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flex: 3,
         marginLeft: 25,
         padding: 10,
-        color: colors.beyaz,
+        color: colors.white,
     },
 })
 export default AddProductRow;

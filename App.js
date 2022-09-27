@@ -18,7 +18,7 @@ const ProductsStack = createNativeStackNavigator()
 
 const ProductsScreen = () => {
   return (
-    <ProductsStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.beyaz, headerTitleStyle: { fontWeight: '500', color: colors.beyaz } }}>
+    <ProductsStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.white, headerTitleStyle: { fontWeight: '500', color: colors.white } }}>
       <ProductsStack.Screen name="Products" component={Products} options={{ title: "List" }} />
       <ProductsStack.Screen name="Details" component={ProductsDetails} options={{ title: "Details" }} />
       <ProductsStack.Screen name="Edit" component={Edit} options={{ title: "Edit" }} />
@@ -31,7 +31,7 @@ const ProfileStack = createNativeStackNavigator()
 
 const ProfileScreen = () => {
   return (
-    <ProfileStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.beyaz, headerTitleStyle: { fontWeight: '500', color: colors.beyaz } }}>
+    <ProfileStack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.primary }, headerTintColor: colors.white, headerTitleStyle: { fontWeight: '500', color: colors.white } }}>
       <ProfileStack.Screen name="Profil" component={Profile} options={{ title: "Profile" }} />
       <ProfileStack.Screen name="ProfileDetails" component={ProfileDetails} options={{ title: "Profile Details" }} />
 
@@ -68,7 +68,7 @@ const HomeScreen = () => {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarStyle: { backgroundColor: colors.primary },
-        tabBarActiveTintColor: colors.beyaz,
+        tabBarActiveTintColor: colors.white,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: colors.secondary,
       })}

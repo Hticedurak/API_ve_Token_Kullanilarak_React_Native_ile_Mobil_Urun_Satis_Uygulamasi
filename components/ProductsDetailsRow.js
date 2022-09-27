@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     property: {
         fontSize: 20,
-        color: colors.gri,
+        color: colors.grey,
         flex: 2,
         marginLeft: 6
     },

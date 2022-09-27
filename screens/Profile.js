@@ -32,7 +32,7 @@ const styles = StyleSheet.create
     ({
         ProfileRow: {
             marginTop: 16,
-            backgroundColor: colors.beyaz,
+            backgroundColor: colors.white,
         },
 
         cell: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create
             marginRight: 16,
             borderColor: colors.primary,
             alignItems: 'center',
-            backgroundColor: colors.beyaz,
+            backgroundColor: colors.white,
         },
 
         out: {
