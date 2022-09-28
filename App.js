@@ -13,6 +13,7 @@ import ProfileDetails from "./screens/ProfileDetails";
 import AddProduct from "./screens/AddProduct";
 import { AuthContext } from "./context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const ProductsStack = createNativeStackNavigator()
@@ -89,13 +90,15 @@ const App = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: 'atuny0',
-          password: '9uQFF1Lh'
+          username,
+          password
         })
       })
         .then(res => res.json())
         .then(res => {
+          setIsLoading(true);
           setUserToken(res);
+          AsyncStorage.setItem('userToken', JSON.stringify(userToken));
           setIsLoading(false);
           console.log(res);
         })
@@ -104,18 +107,12 @@ const App = () => {
         })
     },
     signOut: () => {
+      setIsLoading(true);
       setUserToken(null);
+      AsyncStorage.removeItem('userToken');   
       setIsLoading(false);
     },
   }), []);
-
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size='large' />
-      </View>
-    )
-  }
 
   return (
     <AuthContext.Provider value={authContext}>
