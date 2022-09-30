@@ -11,14 +11,18 @@ const Products = ({ navigation }) => {
     const [search, setSearch] = useState([]);
     const [filterData, setFilterData] = useState([]);
 
-    useEffect(() => {
+    const searchData = () => {
         fetch('https://dummyjson.com/products/search?q=phone')
-        .then(res => res.json())
-        .then(res => res.searchInfo)
-        .then(res => setFilterData(res))
-        .catch(error=>{console.error(error)});
+            .then(res => res.json())
+            .then(res => res.searchInfo)
+            .then(res => setFilterData(res))
+            .catch(error=>{console.error(error)});
+    }
+    useEffect(() => {
+        searchData();
+        return () => {
+        }
     }, []);
-
     useEffect(() => {
         fetch('https://dummyjson.com/products')
             .then(res => res.json())
