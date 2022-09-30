@@ -90,8 +90,8 @@ const App = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username,
-          password
+          username: 'atuny0',
+          password: '9uQFF1Lh'
         })
       })
         .then(res => res.json())
