@@ -12,11 +12,7 @@ const Products = ({ navigation }) => {
     const [filterData, setFilterData] = useState([]);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products/search?q=phone', config {
-            params: {
-                q: search
-            }
-        })
+        fetch('https://dummyjson.com/products/search?q=phone')
         .then(res => res.json())
         .then(res => res.searchInfo)
         .then(res => setFilterData(res))
