@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Products from "./screens/Products";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -49,10 +49,9 @@ const HomeScreen = () => {
           let iconName;
 
           if (route.name === 'List') {
-            iconName = focused
-              ? 'list'
-              : 'list-outline';
-          } else if (route.name === 'Profile') {
+            iconName = focused ? 'list': 'list-outline';
+          } 
+          else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -81,7 +80,13 @@ const AuthScreen = () => {
 const App = () => {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [userToken, setUserToken] = useState(null);
+  const [userToken, setUserToken] = useState();
+
+  useMemo(async () => {
+    let token = await AsyncStorage.getItem('userToken')
+    if (token)
+      setUserToken(token)
+  }, [])
 
   const authContext = useMemo(() => ({
 
@@ -97,7 +102,12 @@ const App = () => {
         .then(res => res.json())
         .then(res => {
           setIsLoading(true);
-          setUserToken(res);
+          if (res.message == null) {
+            setUserToken(res);
+          }
+          else {
+            setUserToken(userToken);
+          }
           AsyncStorage.setItem('userToken', JSON.stringify(userToken));
           setIsLoading(false);
           console.log(res);
@@ -107,17 +117,16 @@ const App = () => {
         })
     },
     signOut: () => {
-      setIsLoading(true);
       setUserToken(null);
-      AsyncStorage.removeItem('userToken');   
       setIsLoading(false);
+      AsyncStorage.removeItem('userToken');
     },
   }), []);
 
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer >
-        {userToken !== null ? (<HomeScreen/>) : <AuthScreen/>}
+        {userToken !== null ? (<HomeScreen />) : <AuthScreen />}
       </NavigationContainer>
     </AuthContext.Provider>
   )

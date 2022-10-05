@@ -27,8 +27,7 @@ const Login = () => {
                     input={"Password"}
                     value={password}
                     onChangeText={setPassword}
-                    secure={true}
-                >
+                    secure={true}>
                 </LoginRow>
                 <View style={styles.box}>
                     <TouchableOpacity style={styles.icon}>
@@ -36,7 +35,7 @@ const Login = () => {
                     </TouchableOpacity>
                     <Text style={styles.remember}>Remember Me</Text>
                 </View>
-                <Button title="LOGIN" color={colors.secondary} onPress={() => { signIn(username, password); }} ></Button>
+                <Button title="LOGIN" color={colors.secondary} onPress={() => { signIn(); }} ></Button>
             </View>
         </View>
     )
