@@ -82,12 +82,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState();
 
-  useMemo(async () => {
-    let token = await AsyncStorage.getItem('userToken')
-    if (token)
-      setUserToken(token)
-  }, [])
-
   const authContext = useMemo(() => ({
 
     signIn: (username, password) => {
@@ -117,21 +111,29 @@ const App = () => {
           alert(e.message);
         })
     },
+
     signOut: () => {
       setUserToken(null);
       setIsLoading(false);
       try {
         AsyncStorage.removeItem('userToken');
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-
     },
   }), []);
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsLoading(false);
+      let userToken = null;
+      try{
+        userToken = await AsyncStorage.getItem('userToken');
+        setUserToken(userToken);
+      }
+      catch(e){
+        console.log(e);
+      }
     }, 1000);
   }, []);
 

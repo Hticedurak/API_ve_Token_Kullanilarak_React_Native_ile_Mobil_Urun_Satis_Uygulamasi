@@ -35,7 +35,7 @@ const Login = () => {
                     </TouchableOpacity>
                     <Text style={styles.remember}>Remember Me</Text>
                 </View>
-                <Button title="LOGIN" color={colors.secondary} onPress={() => { signIn(); }} ></Button>
+                <Button title="LOGIN" color={colors.secondary} onPress={() => { signIn(username, password); }} ></Button>
             </View>
         </View>
     )
