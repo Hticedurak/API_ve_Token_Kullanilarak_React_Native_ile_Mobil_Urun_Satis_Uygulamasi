@@ -49,8 +49,8 @@ const HomeScreen = () => {
           let iconName;
 
           if (route.name === 'List') {
-            iconName = focused ? 'list': 'list-outline';
-          } 
+            iconName = focused ? 'list' : 'list-outline';
+          }
           else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           }
@@ -91,6 +91,8 @@ const App = () => {
   const authContext = useMemo(() => ({
 
     signIn: (username, password) => {
+      setIsLoading(true);
+
       fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -101,14 +103,13 @@ const App = () => {
       })
         .then(res => res.json())
         .then(res => {
-          setIsLoading(true);
           if (res.message == null) {
             setUserToken(res);
+            AsyncStorage.setItem('userToken', JSON.stringify(res));
           }
           else {
             setUserToken(userToken);
           }
-          AsyncStorage.setItem('userToken', JSON.stringify(userToken));
           setIsLoading(false);
           console.log(res);
         })
@@ -119,9 +120,28 @@ const App = () => {
     signOut: () => {
       setUserToken(null);
       setIsLoading(false);
-      AsyncStorage.removeItem('userToken');
+      try {
+        AsyncStorage.removeItem('userToken');
+      } catch (e) {
+        console.log(e)
+      }
+
     },
   }), []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large"></ActivityIndicator>
+      </View>
+    );
+  }
 
   return (
     <AuthContext.Provider value={authContext}>
