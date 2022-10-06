@@ -13,16 +13,19 @@ const Products = ({ navigation }) => {
 
     const searchData = () => {
         fetch('https://dummyjson.com/products/search?q=phone')
-            .then(res => res.json())
-            .then(res => res.searchInfo)
-            .then(res => setFilterData(res))
-            .catch(error=>{console.error(error)});
+            .then((res) => res.json())
+            .then((res) => res.filterData)
+            .then((res) => { setFilterData(res)})
+            .catch((error) => {
+                console.error(error)
+            });
     }
     useEffect(() => {
         searchData();
         return () => {
         }
     }, []);
+
     useEffect(() => {
         fetch('https://dummyjson.com/products')
             .then(res => res.json())
@@ -33,17 +36,18 @@ const Products = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.upside}>
-                <SearchBar value={search} onChangeText={setSearch} onSubmit={searchData} />
-                <FlatList
-                    data={filterData}
-                    renderItem={({ item }) => (
-                        <ProductRow productName={item.title} productPrice={item.price} imageUrl={item.thumbnail} onPress={() => {
-                            navigation.navigate('Details', item);
-                        }} />
-                    )}
-                    keyExtractor={(item) => item.id}>
-                </FlatList>
-
+                <View style={styles.searchContainer}>
+                    <SearchBar value={search} onChangeText={setSearch} onSubmit={searchData}/>
+                    <FlatList 
+                        data={filterData}
+                        renderItem={({ item }) => (
+                            <ProductRow productName={item.title} productPrice={item.price} imageUrl={item.thumbnail} onPress={() => {
+                                navigation.navigate('Details', item);
+                            }} />
+                        )}
+                        keyExtractor={(item) => item.id}>
+                    </FlatList>
+                </View>
                 <TouchableOpacity style={styles.addIcon} onPress={() => {
                     navigation.navigate('AddProduct');
                 }}>
@@ -66,7 +70,7 @@ const Products = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex:1
     },
     upside: {
         paddingHorizontal: 20,
@@ -84,6 +88,14 @@ const styles = StyleSheet.create({
     },
     list: {
         marginBottom: 90
+    },
+    searchContainer: {
+        flex: 1,
+        borderRadius: 11,
+        marginRight: 20,
+        marginVertical: 15,
+        backgroundColor: colors.secondary,
+        borderColor: colors.secondary,
     },
 })
 export default Products;

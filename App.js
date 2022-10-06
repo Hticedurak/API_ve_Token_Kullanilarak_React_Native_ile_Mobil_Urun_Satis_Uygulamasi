@@ -44,6 +44,7 @@ const HomeScreen = () => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
+        tabBarHideOnKeyboard:true,
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;

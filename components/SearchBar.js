@@ -5,7 +5,7 @@ import { colors } from "../config/constants";
 const SearchBar = ({ value, onChangeText, onSubmit }) => {
 
     return (
-        <View style={styles.searchContainer}>
+        <View>
             <TextInput style={styles.input}
                 placeholder='Search'
                 value={value}
@@ -19,15 +19,7 @@ const SearchBar = ({ value, onChangeText, onSubmit }) => {
 export default SearchBar;
 
 const styles = StyleSheet.create({
-    searchContainer: {
-        flex: 1,
-        borderRadius: 11,
-        marginRight: 20,
-        marginVertical: 15,
-        backgroundColor: colors.secondary,
-        borderColor: colors.secondary,
-    },
-    input: {
+ input: {
         color: colors.white,
         marginVertical: 4,
         paddingHorizontal: 15
