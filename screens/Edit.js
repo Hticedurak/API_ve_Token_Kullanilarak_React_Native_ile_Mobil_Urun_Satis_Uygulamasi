@@ -25,7 +25,7 @@ const Edit = ({ navigation, route }) => {
                     </View>
                 </View>
                 <View>
-                    <EditRow propertiesName={'Titl'} property={route.params.title}></EditRow>
+                    <EditRow propertiesName={'Title'} property={route.params.title}></EditRow>
                     <EditRow propertiesName={'Price'} property={route.params.price}></EditRow>
                     <EditRow propertiesName={'Rating'} property={route.params.rating}></EditRow>
                     <EditRow propertiesName={'Brand'} property={route.params.brand}></EditRow>

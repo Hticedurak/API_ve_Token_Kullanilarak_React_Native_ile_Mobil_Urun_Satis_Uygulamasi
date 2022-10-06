@@ -26,10 +26,8 @@ const ProductsDetails = ({ navigation, route }) => {
                 <ProductsDetailsRow propertiesName={'Description'} property={route.params.description} ></ProductsDetailsRow>
 
                 <View style={styles.buttonContainer}>
-                    <ButtonsRow buttonName={'Delete'} onPress={() => { twoButtonAlert() }}></ButtonsRow>
-                    <ButtonsRow buttonName={'Edit'} onPress={() => {
-                        navigation.navigate('Edit', route.params);
-                    }}></ButtonsRow>
+                    <ButtonsRow buttonName={'Delete'} onPress={() => twoButtonAlert()}></ButtonsRow>
+                    <ButtonsRow buttonName={'Edit'} onPress={() => { navigation.navigate('Edit', route.params) }}></ButtonsRow>
                 </View>
             </View>
         </ScrollView>
