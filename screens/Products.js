@@ -10,12 +10,16 @@ const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState([]);
     const [filterData, setFilterData] = useState([]);
+    const [masterData, setMasterData] = useState([]);
 
     const searchData = () => {
         fetch('https://dummyjson.com/products/search?q=phone')
             .then((res) => res.json())
             .then((res) => res.filterData)
-            .then((res) => { setFilterData(res)})
+            .then((res) => { 
+                setFilterData(res);
+                setMasterData(res);
+            })
             .catch((error) => {
                 console.error(error)
             });
@@ -33,11 +37,26 @@ const Products = ({ navigation }) => {
             .then(res => setProducts(res));
     }, []);
 
+const SeacrhFilter= (text) => {
+    if (text){
+        const newData = masterData.filter((item)=> {
+            const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
+            const textData= text.toUpperCase();
+            return itemData.indexOf(textData) >-1;
+        });
+        setFilterData(newData);
+        setSearch(text);
+    } else{
+        setFilterData(masterData);
+        setSearch(text)
+    }
+}
+
     return (
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <SearchBar value={search} onChangeText={setSearch} onSubmit={searchData}/>
+                    <SearchBar value={search} onChangeText={(text)=> SeacrhFilter(text)} onSubmit={searchData}/>
                     <FlatList 
                         data={filterData}
                         renderItem={({ item }) => (
