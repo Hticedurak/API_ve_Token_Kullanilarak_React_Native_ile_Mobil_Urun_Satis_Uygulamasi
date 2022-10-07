@@ -12,11 +12,10 @@ const Products = ({ navigation }) => {
     const [filterData, setFilterData] = useState([]);
     const [masterData, setMasterData] = useState([]);
 
-    const searchData = () => {
-        fetch('https://dummyjson.com/products/search?q=phone')
+    const searchData = (text) => {
+        fetch('https://dummyjson.com/products/search?q='+text)
             .then((res) => res.json())
-            .then((res) => res.filterData)
-            .then((res) => { setFilterData(res)})
+            .then((res) => { setProducts(res)})
             .catch((error) => {
                 console.error(error)
             });
@@ -53,7 +52,7 @@ const SearchFilter= (text) => {
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <SearchBar value={search} onChangeText={(text)=> SearchFilter(text)} onSubmit={searchData}/>
+                    <SearchBar value={search} onChangeText={(text)=> searchData(text)} onSubmit={searchData}/>
                     <FlatList 
                         data={filterData}
                         renderItem={({ item }) => (
