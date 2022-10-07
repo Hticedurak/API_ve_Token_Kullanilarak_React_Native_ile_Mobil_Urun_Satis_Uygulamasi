@@ -16,10 +16,7 @@ const Products = ({ navigation }) => {
         fetch('https://dummyjson.com/products/search?q=phone')
             .then((res) => res.json())
             .then((res) => res.filterData)
-            .then((res) => { 
-                setFilterData(res);
-                setMasterData(res);
-            })
+            .then((res) => { setFilterData(res)})
             .catch((error) => {
                 console.error(error)
             });
