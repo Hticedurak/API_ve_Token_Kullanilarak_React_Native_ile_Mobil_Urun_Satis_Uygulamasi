@@ -9,8 +9,7 @@ import SearchBar from "../components/SearchBar";
 const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState([]);
-    const [filterData, setFilterData] = useState([]);
-
+    
     const searchData = (text) => {
         fetch('https://dummyjson.com/products/search?q='+text)
             .then((res) => res.json())
@@ -25,21 +24,6 @@ const Products = ({ navigation }) => {
             .then(res => res.products)
             .then(res => setProducts(res));
     }, []);
-
-/* const SearchFilter= (text) => {
-    if (text){
-        const newData =filterData.filter((item)=> {
-            const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
-            const textData= text.toUpperCase();
-            return itemData.indexOf(textData) >-1;
-        });
-        setFilterData(newData);
-        setSearch(text);
-    } else{
-        setFilterData(filterData);
-        setSearch(text)
-    }
-}*/
 
     return (
         <View style={styles.container}>
