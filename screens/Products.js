@@ -14,14 +14,10 @@ const Products = ({ navigation }) => {
     const searchData = (text) => {
         fetch('https://dummyjson.com/products/search?q='+text)
             .then((res) => res.json())
+            .then(res => res.products)
             .then((res) => { setProducts(res)})
             .catch((error) => { console.error(error)});
     }
-    useEffect(() => {
-        searchData();
-        return () => {
-        }
-    }, []);
 
     useEffect(() => {
         fetch('https://dummyjson.com/products')
