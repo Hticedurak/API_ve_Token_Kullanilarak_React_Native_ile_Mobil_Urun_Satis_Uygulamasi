@@ -36,7 +36,7 @@ const Products = ({ navigation }) => {
 
 const SeacrhFilter= (text) => {
     if (text){
-        const newData = masterData.filter((item)=> {
+        const newData =filterData.filter((item)=> {
             const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
             const textData= text.toUpperCase();
             return itemData.indexOf(textData) >-1;
@@ -44,7 +44,7 @@ const SeacrhFilter= (text) => {
         setFilterData(newData);
         setSearch(text);
     } else{
-        setFilterData(masterData);
+        setFilterData(filterData);
         setSearch(text)
     }
 }
