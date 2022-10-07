@@ -34,7 +34,7 @@ const Products = ({ navigation }) => {
             .then(res => setProducts(res));
     }, []);
 
-const SeacrhFilter= (text) => {
+const SearchFilter= (text) => {
     if (text){
         const newData =filterData.filter((item)=> {
             const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
@@ -53,7 +53,7 @@ const SeacrhFilter= (text) => {
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <SearchBar value={search} onChangeText={(text)=> SeacrhFilter(text)} onSubmit={searchData}/>
+                    <SearchBar value={search} onChangeText={(text)=> SearchFilter(text)} onSubmit={searchData}/>
                     <FlatList 
                         data={filterData}
                         renderItem={({ item }) => (
