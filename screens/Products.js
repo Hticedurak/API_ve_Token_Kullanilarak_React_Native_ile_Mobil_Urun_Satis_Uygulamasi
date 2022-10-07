@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from "../config/constants";
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ const Products = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <SearchBar value={search} onChangeText={(text)=> searchData(text)} onSubmit={searchData}/>
+                    <SearchBar value={search} onChangeText={(text)=> searchData(text)} />
                 </View>
                 <TouchableOpacity style={styles.addIcon} onPress={() => {
                     navigation.navigate('AddProduct');
