@@ -2,16 +2,25 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import ProfileImage from "../components/ProfileImage";
 import ProfileDetailsRow from "../components/ProfileDetailsRow"
+import { useEffect } from "react";
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ route }) => {
+    const { id } = route.params;
+
+    useEffect(() => {
+        fetch('https://dummyjson.com/users')
+            .then(res => res.json())
+            .then(res => res.users);
+    }, [])
+
     return (
         <View style={styles.container}>
-            <ProfileImage imageUrl={'https://dummyjson.com/image/i/products/1/2.jpg'}></ProfileImage>
-            <ProfileDetailsRow text={'First Name'} property={'Terry'} />
-            <ProfileDetailsRow text={'Last Name'} property={'Terry'} />
-            <ProfileDetailsRow text={'Age'} property={'Terry'} />
-            <ProfileDetailsRow text={'Gender'} property={'Terry'} />
-            <ProfileDetailsRow text={'Email'} property={'Terry'} />
+            <ProfileImage imageUrl={route.params.image}></ProfileImage>
+            <ProfileDetailsRow text={'First Name'} property={route.params.firstName} />
+            <ProfileDetailsRow text={'Last Name'} property={route.params.lastName} />
+            <ProfileDetailsRow text={'Age'} property={route.params.age} />
+            <ProfileDetailsRow text={'Gender'} property={route.params.gender} />
+            <ProfileDetailsRow text={'Email'} property={route.params.email} />
         </View>
     )
 }

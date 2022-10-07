@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Alert, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import ProductsDetailsRow from "../components/ProductsDetailsRow";
 import { useEffect } from "react";
 import ButtonsRow from "../components/ButtonsRow";

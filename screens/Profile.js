@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileRow from "../components/ProfileRow";
-import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, View, FlatList } from "react-native";
 import { colors } from "../config/constants";
 import { Ionicons } from '@expo/vector-icons'
 import { useContext } from "react";
@@ -9,13 +9,27 @@ import { AuthContext } from "../context/AuthContext";
 const Profile = ({ navigation }) => {
 
     const { signOut } = useContext(AuthContext);
+    const [user, setUser]=useState([]);
+
+    useEffect(() => {
+        fetch('https://dummyjson.com/users')
+            .then(res => res.json())
+            .then(res=> res.users)
+            .then(res=> setUser(res))
+    },[])
 
     return (
         <View>
-            <ProfileRow name={'kisiadi'} email={'mailadresi'} style={styles.ProfileRow} onPress={() => {
-                navigation.navigate('ProfileDetails');
-            }}>
-            </ProfileRow>
+            <FlatList style={styles.ProfileRow}
+                data={user}
+                renderItem={({ item }) => (
+                    <ProfileRow name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
+                        navigation.navigate('ProfileDetails', item);
+                    }}>
+                    </ProfileRow>
+                )}
+                keyExtractor={(item) => item.id}>
+            </FlatList>
 
             <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
                 <View style={styles.avatar}>
