@@ -20,10 +20,10 @@ const Profile = ({ navigation }) => {
 
     return (
         <View>
-            <FlatList style={styles.ProfileRow}
+            <FlatList showsVerticalScrollIndicator={false}
                 data={user}
                 renderItem={({ item }) => (
-                    <ProfileRow name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
+                    <ProfileRow style={styles.ProfileRow} name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
                         navigation.navigate('ProfileDetails', item);
                     }}>
                     </ProfileRow>

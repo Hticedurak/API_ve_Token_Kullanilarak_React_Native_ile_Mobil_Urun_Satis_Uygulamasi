@@ -15,7 +15,9 @@ const ProductRow = ({ productName, productPrice, onPress, imageUrl }) => {
                     />
                 </View>
                 <View style={styles.column}>
-                    <Text style={styles.productName}>{productName}</Text>
+                    <View style={styles.productNameRow}>
+                        <Text style={styles.productName}>{productName}</Text>
+                    </View>
                     <Text style={styles.productPrice}>{productPrice}$</Text>
                 </View>
             </View>
@@ -30,7 +32,8 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 2,
         borderRadius: 15,
-        margin: 18,
+        margin: 15,
+        paddingRight: 16,
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: colors.secondary,
@@ -51,6 +54,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         margin: 6,
     },
+    productNameRow: {
+
+
+    },
     productName: {
         fontSize: 20,
         marginBottom: 6,
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     icon: {
-        paddingRight: 12,
+
     }
 })
 export default ProductRow;
