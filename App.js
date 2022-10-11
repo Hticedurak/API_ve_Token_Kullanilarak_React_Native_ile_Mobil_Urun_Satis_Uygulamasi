@@ -102,9 +102,6 @@ const App = () => {
             setUserToken(res);
             AsyncStorage.setItem('userToken', JSON.stringify(res));
           }
-          else {
-            setUserToken(userToken);
-          }
           setIsLoading(false);
           console.log(res);
         })
