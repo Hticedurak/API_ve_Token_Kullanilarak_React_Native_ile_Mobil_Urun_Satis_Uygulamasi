@@ -61,8 +61,8 @@ const HomeScreen = () => {
         tabBarActiveTintColor: colors.white,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: colors.secondary,
-      })}
-    >
+      })}>
+
       <Tabs.Screen name="List" component={ProductsScreen}></Tabs.Screen>
       <Tabs.Screen name="Profile" component={ProfileScreen}></Tabs.Screen>
     </Tabs.Navigator>
@@ -92,8 +92,8 @@ const App = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: 'atuny0',
-          password: '9uQFF1Lh'
+          username,
+          password
         })
       })
         .then(res => res.json())

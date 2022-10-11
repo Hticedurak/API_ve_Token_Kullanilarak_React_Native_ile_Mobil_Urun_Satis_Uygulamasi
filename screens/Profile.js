@@ -9,14 +9,24 @@ import { AuthContext } from "../context/AuthContext";
 const Profile = ({ navigation }) => {
 
     const { signOut } = useContext(AuthContext);
-    const [user, setUser]=useState([]);
+    const [user, setUser] = useState([]);
+    const renderOut= (()=>{
+        return(
+        <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
+        <View style={styles.avatar}>
+            <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>
+        </View>
+        <Text style={styles.out}>OUT</Text>
+        <Ionicons name="chevron-forward-outline" size={20}></Ionicons>
+    </TouchableOpacity>
+    )})
 
     useEffect(() => {
-        fetch('https://dummyjson.com/users')
+        fetch('https://dummyjson.com/users/')
             .then(res => res.json())
-            .then(res=> res.users)
-            .then(res=> setUser(res))
-    },[])
+            .then(res => res.users)
+            .then(res => setUser(res))
+    }, [])
 
     return (
         <View>
@@ -26,18 +36,15 @@ const Profile = ({ navigation }) => {
                     <ProfileRow style={styles.ProfileRow} name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
                         navigation.navigate('ProfileDetails', item);
                     }}>
-                    </ProfileRow>
+                    </ProfileRow>,
+                    renderOut()
                 )}
                 keyExtractor={(item) => item.id}>
+                   
             </FlatList>
-
-            <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
-                <View style={styles.avatar}>
-                    <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>
-                </View>
-                <Text style={styles.out}>OUT</Text>
-                <Ionicons name="chevron-forward-outline" size={20}></Ionicons>
-            </TouchableOpacity>
+         
+          
+        
         </View>
     )
 }
@@ -48,7 +55,6 @@ const styles = StyleSheet.create
             marginTop: 16,
             backgroundColor: colors.white,
         },
-
         cell: {
             flexDirection: 'row',
             paddingHorizontal: 16,
@@ -61,14 +67,15 @@ const styles = StyleSheet.create
             alignItems: 'center',
             backgroundColor: colors.white,
         },
-
         out: {
             flex: 1,
             fontSize: 19,
             fontWeight: '500',
             color: colors.primary,
         },
-
+        screen:{
+marginBottom:57
+        },
         avatar: {
             width: 32,
             height: 32,
