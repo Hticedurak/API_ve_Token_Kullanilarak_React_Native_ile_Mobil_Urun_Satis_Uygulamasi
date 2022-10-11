@@ -10,16 +10,6 @@ const Profile = ({ navigation }) => {
 
     const { signOut } = useContext(AuthContext);
     const [user, setUser] = useState([]);
-    const renderOut= (()=>{
-        return(
-        <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
-        <View style={styles.avatar}>
-            <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>
-        </View>
-        <Text style={styles.out}>OUT</Text>
-        <Ionicons name="chevron-forward-outline" size={20}></Ionicons>
-    </TouchableOpacity>
-    )})
 
     useEffect(() => {
         fetch('https://dummyjson.com/users/')
@@ -29,22 +19,29 @@ const Profile = ({ navigation }) => {
     }, [])
 
     return (
-        <View>
-            <FlatList showsVerticalScrollIndicator={false}
-                data={user}
-                renderItem={({ item }) => (
-                    <ProfileRow style={styles.ProfileRow} name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
-                        navigation.navigate('ProfileDetails', item);
-                    }}>
-                    </ProfileRow>,
-                    renderOut()
-                )}
-                keyExtractor={(item) => item.id}>
-                   
-            </FlatList>
-         
-          
-        
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 0.9 }}>
+                <FlatList showsVerticalScrollIndicator={false}
+                    data={user}
+                    renderItem={({ item }) => (
+                        <ProfileRow style={styles.ProfileRow} name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
+                            navigation.navigate('ProfileDetails', item);
+                        }}>
+                        </ProfileRow>
+                    )}
+                    keyExtractor={(item) => item.id}>
+                </FlatList>
+            </View>
+            <View style={{ flex: 0.1 }}>
+                <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
+                    <View style={styles.avatar}>
+                        <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>
+                    </View>
+                    <Text style={styles.out}>OUT</Text>
+                    <Ionicons name="chevron-forward-outline" size={20}></Ionicons>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }
@@ -73,8 +70,8 @@ const styles = StyleSheet.create
             fontWeight: '500',
             color: colors.primary,
         },
-        screen:{
-marginBottom:57
+        screen: {
+            marginBottom: 57
         },
         avatar: {
             width: 32,
