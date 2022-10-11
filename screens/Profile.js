@@ -20,7 +20,7 @@ const Profile = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 0.9 }}>
+            <View style={{ flex: 1 }}>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={user}
                     renderItem={({ item }) => (
@@ -32,7 +32,7 @@ const Profile = ({ navigation }) => {
                     keyExtractor={(item) => item.id}>
                 </FlatList>
             </View>
-            <View style={{ flex: 0.1 }}>
+            <View style={{ flex: 0 }}>
                 <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
                     <View style={styles.avatar}>
                         <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>
@@ -41,7 +41,6 @@ const Profile = ({ navigation }) => {
                     <Ionicons name="chevron-forward-outline" size={20}></Ionicons>
                 </TouchableOpacity>
             </View>
-
         </View>
     )
 }
@@ -69,9 +68,6 @@ const styles = StyleSheet.create
             fontSize: 19,
             fontWeight: '500',
             color: colors.primary,
-        },
-        screen: {
-            marginBottom: 57
         },
         avatar: {
             width: 32,
