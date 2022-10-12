@@ -12,27 +12,21 @@ const Profile = ({ navigation }) => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/users/'+ userInfo.id)
+        fetch('https://dummyjson.com/users/'+userInfo.id)
             .then(res => res.json())
-            .then(res => res.users)
             .then(res => setUser(res))
     }, [])
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
-                <FlatList showsVerticalScrollIndicator={false}
-                    data={user}
-                    renderItem={({ item }) => (
-                        <ProfileRow style={styles.ProfileRow} name={item.username} email={item.email} imageUrl={item.image} onPress={() => {
-                            navigation.navigate('ProfileDetails', item);
-                        }}>
-                        </ProfileRow>
-                    )}
-                    keyExtractor={(item) => item.id}>
-                </FlatList>
+            <View>
+                <ProfileRow style={styles.ProfileRow} name={user.username} email={user.email} imageUrl={user.image} 
+                onPress={() => {
+                    navigation.navigate('ProfileDetails', user);
+                }}>
+                </ProfileRow>
             </View>
-            <View style={{ flex: 0 }}>
+            <View>
                 <TouchableOpacity style={styles.cell} onPress={() => { signOut() }}>
                     <View style={styles.avatar}>
                         <Ionicons name="log-out-outline" size={24} color={'white'}></Ionicons>

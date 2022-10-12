@@ -15,7 +15,7 @@ const ProductRow = ({ productName, productPrice, onPress, imageUrl }) => {
                     />
                 </View>
                 <View style={styles.column}>
-                    <Text style={styles.productName}>{productName}</Text>
+                    <Text numberOfLines={1} style={styles.productName}>{productName}</Text>
                     <Text style={styles.productPrice}>{productPrice}$</Text>
                 </View>
             </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         margin: 6,
     },
     productName: {
-        fontSize: 18,
+        fontSize: 20,
         marginBottom: 6,
         fontWeight: 'bold',
         color: colors.primary,
