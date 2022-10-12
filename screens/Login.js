@@ -11,6 +11,9 @@ const Login = () => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
 
+    const [submit, setSubmit] = useState(false);
+    const onPress = () => { setSubmit(!submit) };
+
     const { signIn } = useContext(AuthContext);
 
     return (
@@ -30,8 +33,9 @@ const Login = () => {
                     secure={true}>
                 </LoginRow>
                 <View style={styles.box}>
-                    <TouchableOpacity style={styles.icon}>
-                        <Ionicons name="checkmark" size={18} color={'white'}></Ionicons>
+                    <TouchableOpacity style={styles.icon} onPress={() => onPress()}>
+                        {submit ? <Ionicons name="checkmark" size={18} color={'white'}></Ionicons>
+                            : null}
                     </TouchableOpacity>
                     <Text style={styles.remember}>Remember Me</Text>
                 </View>
