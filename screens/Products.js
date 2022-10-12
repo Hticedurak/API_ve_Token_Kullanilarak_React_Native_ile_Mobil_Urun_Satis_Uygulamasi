@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         backgroundColor: colors.secondary,
         borderColor: colors.secondary,
-    },
+    }
 })
 export default Products;
