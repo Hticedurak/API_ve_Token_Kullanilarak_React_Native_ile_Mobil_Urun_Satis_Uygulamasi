@@ -44,7 +44,7 @@ const HomeScreen = () => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
-        tabBarHideOnKeyboard:true,
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -101,6 +101,7 @@ const App = () => {
           if (res.message == null) {
             setUserToken(res);
             AsyncStorage.setItem('userToken', JSON.stringify(res));
+            userInfo.id = res.id
           }
           setIsLoading(false);
           console.log(res);
@@ -125,11 +126,11 @@ const App = () => {
     setTimeout(async () => {
       setIsLoading(false);
       let userToken = null;
-      try{
+      try {
         userToken = await AsyncStorage.getItem('userToken');
         setUserToken(userToken);
       }
-      catch(e){
+      catch (e) {
         console.log(e);
       }
     }, 1000);

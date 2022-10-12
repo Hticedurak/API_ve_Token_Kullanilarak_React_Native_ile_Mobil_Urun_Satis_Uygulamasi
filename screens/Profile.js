@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProfileRow from "../components/ProfileRow";
 import { TouchableOpacity, Text, StyleSheet, View, FlatList } from "react-native";
-import { colors } from "../config/constants";
+import { colors, userInfo } from "../config/constants";
 import { Ionicons } from '@expo/vector-icons'
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -12,7 +12,7 @@ const Profile = ({ navigation }) => {
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/users/')
+        fetch('https://dummyjson.com/users/'+ userInfo.id)
             .then(res => res.json())
             .then(res => res.users)
             .then(res => setUser(res))
