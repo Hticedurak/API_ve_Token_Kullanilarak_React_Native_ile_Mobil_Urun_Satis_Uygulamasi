@@ -9,13 +9,13 @@ import SearchBar from "../components/SearchBar";
 const Products = ({ navigation }) => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState([]);
-    
+
     const searchData = (text) => {
-        fetch('https://dummyjson.com/products/search?q='+text)
+        fetch('https://dummyjson.com/products/search?q=' + text)
             .then((res) => res.json())
             .then(res => res.products)
-            .then((res) => { setProducts(res)})
-            .catch((error) => { console.error(error)});
+            .then((res) => { setProducts(res) })
+            .catch((error) => { console.error(error) });
     }
 
     useEffect(() => {
@@ -29,12 +29,12 @@ const Products = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.upside}>
                 <View style={styles.searchContainer}>
-                    <SearchBar value={search} onChangeText={(text)=> searchData(text)} />
+                    <SearchBar value={search} onChangeText={(text) => searchData(text)} />
                 </View>
                 <TouchableOpacity style={styles.addIcon} onPress={() => {
-                    navigation.navigate('AddProduct');
+                    navigation.navigate('AddProduct')
                 }}>
-                    <Ionicons name='add' size={24} color={colors.white}  ></Ionicons>
+                    <Ionicons name='add' size={24} color={colors.white}></Ionicons>
                 </TouchableOpacity>
             </View>
             <View >
@@ -53,7 +53,7 @@ const Products = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     container: {
-        flex:1
+        flex: 1
     },
     upside: {
         paddingHorizontal: 20,

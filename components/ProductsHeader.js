@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Alert } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { colors } from "../config/constants";
 
 const ProductsHeader = ({ header, price, imageUrl }) => {
     return (
         <View style={styles.headerContainer}>
             <Image style={styles.detailImage} resizeMode='stretch' source={{ uri: imageUrl }} />
-            <View>
+            <View> 
                 <Text style={styles.header}>{header}</Text>
                 <View style={styles.seperator}></View>
                 <Text style={styles.price}>{price}$</Text>
@@ -14,33 +14,23 @@ const ProductsHeader = ({ header, price, imageUrl }) => {
         </View>
     )
 }
-Alert.alert(
-    "Warning",
-    "You are about to delete this product. Are you sure?",
-    [{
-        text: "Yes",
-        onPress: () => console.log("OK Deleted"),
-        style: "yes"
-    },
-    { text: "No", onPress: () => console.log("No Deleted") }]
-);
-
 const styles = StyleSheet.create({
     headerContainer: {
-        paddingHorizontal: 25,
+        paddingHorizontal: 15,
         paddingVertical: 29,
         alignItems: 'center',
         flexDirection: 'row',
+        marginEnd:19
     },
     detailImage: {
         width: 90,
         height: 90,
         borderRadius: 4,
-        marginRight: 30,
+        marginRight: 20,
     },
     header: {
         fontWeight: 'bold',
-        fontSize: 27,
+        fontSize: 21,
         fontStyle: 'italic',
         color: colors.secondary,
         textAlign: 'center',

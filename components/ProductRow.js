@@ -15,13 +15,11 @@ const ProductRow = ({ productName, productPrice, onPress, imageUrl }) => {
                     />
                 </View>
                 <View style={styles.column}>
-                    <View style={styles.productNameRow}>
-                        <Text style={styles.productName}>{productName}</Text>
-                    </View>
+                    <Text style={styles.productName}>{productName}</Text>
                     <Text style={styles.productPrice}>{productPrice}$</Text>
                 </View>
             </View>
-            <View style={styles.icon}>
+            <View>
                 <Ionicons name="chevron-forward-outline" size={20} ></Ionicons>
             </View>
         </TouchableOpacity>
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 15,
         margin: 15,
-        paddingRight: 16,
+        paddingRight: 13,
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: colors.secondary,
@@ -54,27 +52,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         margin: 6,
     },
-    productNameRow: {
-
-
-    },
     productName: {
-        fontSize: 20,
+        fontSize: 18,
         marginBottom: 6,
         fontWeight: 'bold',
         color: colors.primary,
         paddingStart: 10,
+        marginRight: 18,
         fontStyle: 'italic',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     productPrice: {
         paddingStart: 10,
         paddingEnd: 10,
         fontSize: 18,
         fontWeight: 'bold',
-    },
-    icon: {
-
     }
 })
 export default ProductRow;
