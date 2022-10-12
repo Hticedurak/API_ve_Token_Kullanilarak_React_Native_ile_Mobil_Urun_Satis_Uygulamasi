@@ -14,6 +14,7 @@ import AddProduct from "./screens/AddProduct";
 import { AuthContext } from "./context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { userInfo } from "./config/constants";
 
 const ProductsStack = createNativeStackNavigator()
 const ProductsScreen = () => {
