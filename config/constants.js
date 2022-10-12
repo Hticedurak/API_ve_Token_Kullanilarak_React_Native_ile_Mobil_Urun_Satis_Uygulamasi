@@ -5,3 +5,9 @@ export const colors = {
     secondary:'#0e4c92',
     grey: '#647c73',
 }
+
+export const id = {
+
+}
+
+
