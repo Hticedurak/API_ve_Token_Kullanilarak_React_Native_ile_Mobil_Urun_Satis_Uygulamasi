@@ -4,7 +4,7 @@ import ProductsDetailsRow from "../components/ProductsDetailsRow";
 import { useEffect } from "react";
 import ButtonsRow from "../components/ButtonsRow";
 import ProductsHeader from "../components/ProductsHeader"
-import { twoButtonAlert } from "../config/constants";
+import { twoButtonAlert } from "../config/function";
 
 const ProductsDetails = ({ navigation, route }) => {
     const { id } = route.params;
