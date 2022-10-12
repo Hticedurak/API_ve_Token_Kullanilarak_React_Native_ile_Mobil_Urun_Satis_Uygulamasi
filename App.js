@@ -15,7 +15,6 @@ import { AuthContext } from "./context/AuthContext";
 import { ActivityIndicator, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
 const ProductsStack = createNativeStackNavigator()
 const ProductsScreen = () => {
   return (
@@ -92,8 +91,8 @@ const App = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username,
-          password
+          username: username,
+          password: password
         })
       })
         .then(res => res.json())
